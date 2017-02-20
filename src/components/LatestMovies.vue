@@ -49,7 +49,6 @@ import Resources from '../resources';
 				axios.get(this.resources.newMovies())
 				.then(response => {
 					this.movies = this.chunk(response.data.results,3);
-					console.log(this.movies);
 				})
 				.catch(errors => console.log(errors));
 			},
