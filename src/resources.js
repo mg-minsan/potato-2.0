@@ -36,7 +36,7 @@ class Resources{
 	}
 
 	getImage(filepath){
-		return "http://image.tmdb.org/t/p/w300" + filepath;
+		return "https://image.tmdb.org/t/p/w300" + filepath;
 	}
 
 }
