@@ -1,11 +1,11 @@
 <template>
 <div >
 	<div class="columns" v-for="group in movies">
-		<div class="column is-4" v-for="movie in group">
+		<div class="column is-3" v-for="movie in group">
 			<div class="card">
 				<div class="card-image">
-					<figure class="image is-4by4">
-						<img :src="fetchImage(movie.poster_path)" alt="Image">
+					<figure class="image">
+						<img :src="fetchImage(movie.poster_path)" alt="Image" width="200">
 					</figure>
 				</div>
 
@@ -13,15 +13,16 @@
 					<div class="media">
 					
 						<div class="media-content">
-							<p class="title is-4">{{ movie.original_title }}</p>
-							<p class="subtitle is-6">{{  movie.release_date }}</p>
+							<p class="is-medium">{{ movie.original_title }}</p>
+							<p class="subtitle is-6"> <small>{{  movie.release_date }}</small> </p>
 						</div>
 
 					</div>
 
 					<div class="content">
-					<p> {{ readMore(movie.overview) }} </p>
-					<small class="rating">Rating: {{  movie.vote_average }}</small>
+					<!-- <p> {{ readMore(movie.overview) }} </p> -->
+					<small class="rating">Rating: {{movie.vote_average}}/10</small>
+					<progress class="progress is-danger" :value="movie.vote_average" max="10">{{  movie.vote_average }} %</progress>
 					</div>
 				</div>
 			</div>
@@ -48,7 +49,7 @@ import Resources from '../resources';
 			fetchData(){
 				axios.get(this.resources.newMovies())
 				.then(response => {
-					this.movies = this.chunk(response.data.results,3);
+					this.movies = this.chunk(response.data.results,4);
 				})
 				.catch(errors => console.log(errors));
 			},
@@ -66,7 +67,7 @@ import Resources from '../resources';
 			},
 			readMore(text){
 				let arr = text.split(" ");
-				let content = arr.slice(1, 25).join(" ");
+				let content = arr.slice(1, 20).join(" ");
 				return content + " .....";
 			}
 		},
@@ -78,9 +79,15 @@ import Resources from '../resources';
 </script>
 <style scoped>
 	.card{
-		min-height: 850px;
+		min-height: 550px;
 	}
 	.rating{
 		color: #e91e63;
+	}
+	.card-image{
+		text-align: center;
+	}
+	.card-image figure{
+		display: inline-block;
 	}
 </style>
