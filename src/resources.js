@@ -11,6 +11,7 @@ class Resources{
 		let url = this.discoverBase() + this.apiKey() + 
 		"&language=en-US" +
 		"&sort_by=popularity.desc" +
+		"&page=2" +
 		"&region=US" +
 		"&primary_release_date.gte=" + date.from+
 		"&primary_release_date.lte=" + date.to;

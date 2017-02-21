@@ -27,17 +27,19 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
+	<infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
 </div>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
+import InfiniteLoading from 'vue-infinite-loading';
 import Resources from '../resources';
 
 	export default {
+		components: {InfiniteLoading},
 		data () {
 			return {
 				msg: "Latest",
@@ -47,6 +49,7 @@ import Resources from '../resources';
 		},
 		methods: {
 			fetchData(){
+				console.log(this.resources.newMovies());
 				axios.get(this.resources.newMovies())
 				.then(response => {
 					this.movies = this.chunk(response.data.results,4);
