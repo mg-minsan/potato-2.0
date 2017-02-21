@@ -42,13 +42,14 @@ import Resources from '../resources';
 		components: {InfiniteLoading},
 		data () {
 			return {
+				page: 0,
 				msg: "Latest",
-				movies: {},
+				movies: [],
 				resources: new Resources()
 			}
 		},
 		methods: {
-			fetchData(){
+				fetchData(){
 				console.log(this.resources.newMovies());
 				axios.get(this.resources.newMovies())
 				.then(response => {
@@ -56,7 +57,23 @@ import Resources from '../resources';
 				})
 				.catch(errors => console.log(errors));
 			},
+			onInfinite(){
+				axios.get(this.resources.newMovies(this.movies.length / 5 + 1))
+				.then(response =>{
+					if(response.data.results.length){
+						this.movies = this.movies.concat(this.chunk(response.data.results,4));
+						this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
+						if(this.movies.length / 5 === response.data.total_pages){
+							this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
+						}
+					}else{
 
+						this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
+					}
+				})
+				.catch(errors => console.log(errors));
+
+			},
 			chunk(arr, size){
 				var groups = [], i;
 				for (i = 0; i < arr.length; i += size) {
@@ -76,7 +93,6 @@ import Resources from '../resources';
 		},
 		
 		created() {
-			this.fetchData()
 		}
 	}
 </script>

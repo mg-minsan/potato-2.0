@@ -5,13 +5,13 @@ class Resources{
 
 	}
 
-	newMovies(){
+	newMovies(page = 1 ){
 
 		let date = this.byMonth();
 		let url = this.discoverBase() + this.apiKey() + 
 		"&language=en-US" +
 		"&sort_by=popularity.desc" +
-		"&page=2" +
+		"&page=" + page +
 		"&region=US" +
 		"&primary_release_date.gte=" + date.from+
 		"&primary_release_date.lte=" + date.to;
@@ -37,6 +37,9 @@ class Resources{
 	}
 
 	getImage(filepath){
+		if(filepath == null){
+			return "https://placehold.it/300x450";
+		}
 		return "https://image.tmdb.org/t/p/w300" + filepath;
 	}
 
