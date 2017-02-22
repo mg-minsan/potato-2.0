@@ -5,19 +5,18 @@
       <main-nav></main-nav>
     <br/>
     <div class="container"> 
-      <latest-movies></latest-movies>
+      <router-view></router-view>
     </div>
 
   </div>
 </template>
 
 <script>
-import LatestMovies from './components/LatestMovies';
 import MainNav from './components/MainNav';
 
 export default {
   name: 'app',
-  components: {LatestMovies, MainNav}
+  components: {MainNav}
 }
 </script>
 

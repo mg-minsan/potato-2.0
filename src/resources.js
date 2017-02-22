@@ -1,4 +1,5 @@
 import moment from 'moment';
+import axios from 'axios';
 
 class Resources{
 	constructor(){
@@ -33,7 +34,7 @@ class Resources{
 
 	apiKey() {
 		// from some 
-		return "api_key=dcdb07467047fab5a15bfd545fbc912d"
+		return "api_key=dcdb07467047fab5a15bfd545fbc912d";
 	}
 
 	getImage(filepath){
@@ -43,6 +44,18 @@ class Resources{
 		return "https://image.tmdb.org/t/p/w300" + filepath;
 	}
 
+	getMovieUrl(id){
+		let url = "https://api.themoviedb.org/3/movie/" +
+		       + id + "?"
+		       + this.apiKey();
+		 return url;
+
+	}
+	testRequest(type, url, data = null){
+		axios[type](url, data)
+		.then(response => console.log(response.data))
+		.catch(errors => console.log(errors));
+	}
 }
 
 export default Resources;

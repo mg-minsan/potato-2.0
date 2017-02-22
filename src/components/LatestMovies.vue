@@ -2,6 +2,7 @@
 <div >
 	<div class="columns" v-for="group in movies">
 		<div class="column is-3" v-for="movie in group">
+		<router-link :to="{ name: 'movie', params: { id: movie.id}}">
 			<div class="card">
 				<div class="card-image">
 					<figure class="image">
@@ -26,6 +27,7 @@
 					</div>
 				</div>
 			</div>
+			</router-link>
 		</div>
 	</div>
 	<infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
@@ -36,9 +38,11 @@
 <script>
 import axios from 'axios';
 import InfiniteLoading from 'vue-infinite-loading';
+import router from '../router'
 import Resources from '../resources';
 
 	export default {
+		router,
 		components: {InfiniteLoading},
 		data () {
 			return {
@@ -49,14 +53,14 @@ import Resources from '../resources';
 			}
 		},
 		methods: {
-				fetchData(){
-				console.log(this.resources.newMovies());
-				axios.get(this.resources.newMovies())
-				.then(response => {
-					this.movies = this.chunk(response.data.results,4);
-				})
-				.catch(errors => console.log(errors));
-			},
+			// 	fetchData(){
+			// 	console.log(this.resources.newMovies());
+			// 	axios.get(this.resources.newMovies())
+			// 	.then(response => {
+			// 		this.movies = this.chunk(response.data.results,4);
+			// 	})
+			// 	.catch(errors => console.log(errors));
+			// },
 			onInfinite(){
 				axios.get(this.resources.newMovies(this.movies.length / 5 + 1))
 				.then(response =>{
@@ -99,6 +103,7 @@ import Resources from '../resources';
 <style scoped>
 	.card{
 		min-height: 550px;
+		cursor: pointer;
 	}
 	.rating{
 		color: #e91e63;
