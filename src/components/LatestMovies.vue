@@ -6,7 +6,7 @@
 			<div class="card">
 				<div class="card-image">
 					<figure class="image">
-						<img :src="fetchImage(movie.poster_path)" alt="Image" width="200">
+						<img v-lazy="fetchImage(movie.poster_path)" alt="Image" width="200">
 					</figure>
 				</div>
 
@@ -113,5 +113,8 @@ import Resources from '../resources';
 	}
 	.card-image figure{
 		display: inline-block;
+	}
+	figure .image{
+		min-width: 200;
 	}
 </style>

@@ -6,10 +6,8 @@ import router from './router'
 import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueLazyload, {
-	preLoad: 1.3,
-	error: 'https://placehold.it/300x450',
-	loading: './assets/ring.gif',
-	attempt: 1
+	error: '/static/error.jpg',
+	loading: "/static/ring.gif",
 })
 
 /* eslint-disable no-new */

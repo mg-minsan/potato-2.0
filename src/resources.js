@@ -38,9 +38,10 @@ class Resources{
 	}
 
 	getImage(filepath){
-		if(filepath == null){
-			return "https://placehold.it/300x450";
-		}
+		// if(filepath == null){
+			// return "https://placehold.it/300x550";
+		// }
+		console.log(filepath);
 		return "https://image.tmdb.org/t/p/w300" + filepath;
 	}
 
