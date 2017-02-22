@@ -9,13 +9,10 @@ class Resources{
 	newMovies(page = 1 ){
 
 		let date = this.byMonth();
-		let url = this.discoverBase() + this.apiKey() + 
-		"&language=en-US" +
-		"&sort_by=popularity.desc" +
-		"&page=" + page +
-		"&region=US" +
-		"&primary_release_date.gte=" + date.from+
-		"&primary_release_date.lte=" + date.to;
+		let url = "https://api.themoviedb.org/3/movie/upcoming?"
+		+ this.apiKey()
+		+ "&language=en-US"
+		+"&page=" + page 
 		return url;
 	}
 
@@ -38,10 +35,9 @@ class Resources{
 	}
 
 	getImage(filepath){
-		// if(filepath == null){
-			// return "https://placehold.it/300x550";
-		// }
-		console.log(filepath);
+		if(filepath == null){
+			return "https://placehold.it/300x450";
+		}
 		return "https://image.tmdb.org/t/p/w300" + filepath;
 	}
 
@@ -51,6 +47,14 @@ class Resources{
 		       + this.apiKey();
 		 return url;
 
+	}
+	getMovieTrailer(id){
+		let url = "https://api.themoviedb.org/3/movie/" +
+		id + 
+		"/videos?"
+		+ this.apiKey();
+
+		return url;
 	}
 	testRequest(type, url, data = null){
 		axios[type](url, data)
