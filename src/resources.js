@@ -53,13 +53,20 @@ class Resources{
 		id + 
 		"/videos?"
 		+ this.apiKey();
-
 		return url;
 	}
 	testRequest(type, url, data = null){
 		axios[type](url, data)
 		.then(response => console.log(response.data))
 		.catch(errors => console.log(errors));
+	}
+
+	searchMovie(value){
+		return "https://api.themoviedb.org/3/search/movie?"
+		+ this.apiKey()
+		+ "&language=en-US" 
+		+ "&query=" + value
+		+ "&include_adult=false&region=USA";
 	}
 }
 

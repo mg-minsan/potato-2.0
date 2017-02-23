@@ -52,6 +52,12 @@
 			}
 		},
 		computed:{
+
+		},
+		watch: {
+			'$route': function(){
+			this.fetchData();
+			}
 		},
 		methods:{
 			getTrailerUrl(){
@@ -59,24 +65,37 @@
 			},
 			toggleTrailer(){
 				this.startTrailer = !this.startTrailer;
+			},
+			fetchData(){
+
+				axios.get(this.resources.getMovieUrl(this.$route.params.id))
+				.then(response => {
+					this.movie = response.data;
+
+				//this.resources.testRequest('get', this.resources.getMovieTrailer(this.movie.id));
+			})
+				.catch(errors => console.log(errors));
+				// this.resources.testRequest('get',this.resources.getMovieUrl(this.$route.params.id));
+				axios.get(this.resources.getMovieTrailer(this.$route.params.id))
+				.then(response =>{
+					let trailer = response.data.results;
+					let lastTrailer = trailer[trailer.length-1];
+					this.trailer = lastTrailer;
+				});
 			}
-		},
-			created(){
-				console.log(this.resources.getMovieUrl(this.$route.params.id));
+	},
+	created(){
 			axios.get(this.resources.getMovieUrl(this.$route.params.id))
 			.then(response => {
 				this.movie = response.data;
-				
-				//this.resources.testRequest('get', this.resources.getMovieTrailer(this.movie.id));
 			})
 			.catch(errors => console.log(errors));
-			this.resources.testRequest('get',this.resources.getMovieUrl(this.$route.params.id));
+
 			axios.get(this.resources.getMovieTrailer(this.$route.params.id))
 			.then(response =>{
 				let trailer = response.data.results;
 				let lastTrailer = trailer[trailer.length-1];
-				 this.trailer = lastTrailer;
-				console.log();
+				this.trailer = lastTrailer;
 			});
 		}
 	}

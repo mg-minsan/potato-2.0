@@ -11,12 +11,13 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "deploy": "git subtree push --prefix dist heroku master"
-},
-"dependencies": {
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
     "vue": "^2.1.10",
     "vue-router": "^2.2.0"
-},
-"devDependencies": {
+  },
+  "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -70,9 +71,9 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
     "webpack-merge": "^2.6.1"
-},
-"engines": {
+  },
+  "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-}
+  }
 }
