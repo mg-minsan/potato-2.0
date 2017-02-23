@@ -5,6 +5,12 @@
       <main-nav></main-nav>
     <br/>
     <div class="container"> 
+      <p class="control has-icon has-icon-left">
+        <input class="input" type="text" placeholder="Text input" >
+        <span class="icon is-small">
+          <i class="fa fa-search"></i>
+        </span>
+        </p>
       <router-view></router-view>
     </div>
 

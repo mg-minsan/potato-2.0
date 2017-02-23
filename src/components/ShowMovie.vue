@@ -27,8 +27,10 @@
 				<div class="modal" :class="{'is-active': startTrailer}">
 					<div class="modal-background"></div>
 					<div class="modal-card">
+						<div class="video-container">
 							<iframe v-if="startTrailer" :src="getTrailerUrl()" width="640" height="385">
 							</iframe>
+						</div>
 					</div>
 					<button class="modal-close" @click="toggleTrailer()"></button>
 				</div> 
