@@ -28,7 +28,8 @@
 					<div class="modal-background"></div>
 					<div class="modal-card">
 						<div class="video-container">
-							<iframe v-if="startTrailer" :src="getTrailerUrl()" width="640" height="385">
+							<iframe v-if="startTrailer" :src="getTrailerUrl()" width="640" height="385"
+							allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen">
 							</iframe>
 						</div>
 					</div>
